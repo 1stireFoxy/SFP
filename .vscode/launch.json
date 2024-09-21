@@ -8,27 +8,20 @@
             "name": "backend",
             "cwd": "backend",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "bin/server.dart"
         },
         {
-            "name": "frontend",
-            "cwd": "frontend",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "frontend (profile mode)",
+            "name": "frontend web",
             "cwd": "frontend",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "frontend (release mode)",
-            "cwd": "frontend",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
+            "args": [
+                "-d",
+                "chrome",
+                "--web-port",
+                "8081"
+            ]
         }
     ]
 }
