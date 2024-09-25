@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 void main() {
@@ -34,19 +33,20 @@ Future <void> sendName() async {
     controller.clear();
     final url = Uri.parse('http://localhost:8080/api/v1/submit');
     try {
-      final response = http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode({'name': name}),
+      final response = await http
+       .post(
+         url,
+         headers: {'Content-Type': 'application/json'},
+         body: json.encode({'name': name}),
       )
-      .timeout(const Duration(seconds: 10));
-    if (response.body.IsNotEmpty){
-      final data = json.decode(response.body);
-      setState(() {
-        responseMessage = data['message'];
+       .timeout(const Duration(seconds: 10));
+      if (response.body.isNotEmpty){
+       final data = json.decode(response.body);
+       setState(() {
+         responseMessage = data['message'];
       });
-     }
-    else {
+    }
+      else {
       setState(() {
         responseMessage = 'không nhận được phản hồi từ server';
       });
@@ -83,10 +83,6 @@ Future <void> sendName() async {
       ),
     );
   }
-}
-
-extension on Future<http.Response> {
-  get body => null;
 }
 
 
